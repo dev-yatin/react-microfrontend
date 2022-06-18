@@ -4,12 +4,12 @@ import {
 } from "@material-ui/core/styles";
 import React, { useLayoutEffect, useState } from "react";
 import { Route, Router, Routes } from "react-router-dom";
-import Landing from "./components/Landing";
-import Pricing from "./components/Pricing";
+import Home from "./components/Home";
+import Signin from "./components/Signin";
 
 // To prevent css class names conflict in production when different microforntend deployed
 const generateClassName = createGenerateClassName({
-  productionPrefix: "mar",
+  productionPrefix: "auth",
 });
 
 const SiteRoutes = ({ history }) => {
@@ -28,6 +28,8 @@ const SiteRoutes = ({ history }) => {
     return unlisten;
   }, [history]);
 
+  console.log(history.location.pathname);
+
   return (
     <React.Fragment>
       <StylesProvider generateClassName={generateClassName}>
@@ -37,12 +39,8 @@ const SiteRoutes = ({ history }) => {
           navigationType={historyState.action}
         >
           <Routes>
-            <Route path="/">
-              <Route index element={<Landing />} />
-            </Route>
-            <Route path="/pricing">
-              <Route index element={<Pricing />} />
-            </Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/auth" element={<Signin />} />
           </Routes>
         </Router>
       </StylesProvider>
