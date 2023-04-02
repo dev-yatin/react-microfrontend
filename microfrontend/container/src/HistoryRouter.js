@@ -8,7 +8,6 @@ export default function HistoryRouter({ history, children }) {
   });
 
   useLayoutEffect(() => {
-    console.log("container", history);
     const unlisten = history.listen(({ location, action }) => {
       setHistoryState({ location, action });
     });
